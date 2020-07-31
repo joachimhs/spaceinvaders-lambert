@@ -29,7 +29,9 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.parent("gameArea");
+
   spiller = new Spiller(200, 360);
   setupAliens();
 }
@@ -69,7 +71,7 @@ function drawAliens() {
     aliens[index].update();
 
     for (let indexb = bullets.length - 1; indexb >= 0; indexb--) {
-      if (aliens[index].pos.dist(bullets[indexb].pos) < 12) {
+      if (aliens[index].getCenter().dist(bullets[indexb].pos) < 12) {
         //aliens.splice(index, 1);
         //bullets.splice(indexb, 1);
         score++;
@@ -169,6 +171,9 @@ function keyPressed() {
   if (keyCode === UP_ARROW) {
     if (bullets.length <= 4) {
       bullets.push(new Bullet(spiller.pos.x + 25, spiller.pos.y, 4));
+      var sound = createShootSound()
+      sound.loop = true;
+      sound.play();
     }
   }
 

@@ -18,7 +18,7 @@ class Spiller {
     fill(255);
     //rect(this.pos.x, this.pos.y, 50, 50);
     tint(255, 255, 255);
-    
+
     image(spillerImage, this.pos.x, this.pos.y);
     noTint();
   }
@@ -27,7 +27,7 @@ class Spiller {
     let hit = false;
 
     for (let index = 0; index < alienBullets.length; index++) {
-      if (this.pos.dist(alienBullets[index].pos) < 18) {
+      if (this.getCenter().dist(alienBullets[index].pos) < 18) {
         hit = true;
       }
     }
